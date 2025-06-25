@@ -1,0 +1,36 @@
+conditionalTags:
+	DevenJahnke\PHPStan\Rules\Tests\ClassMustExtendTestCaseRule:
+		phpstan.rules.rule: %devenjahnke.tests.enabled%
+	DevenJahnke\PHPStan\Rules\Tests\MethodNamePrefixRule:
+		phpstan.rules.rule: %devenjahnke.tests.enabled%
+	DevenJahnke\PHPStan\Rules\Tests\MethodNameSnakeCaseRule:
+		phpstan.rules.rule: %devenjahnke.tests.enabled%
+parameters:
+	devenjahnke:
+		tests:
+			enabled: true
+			testCaseClass: Tests\TestCase
+parametersSchema:
+	devenjahnke: structure([
+		tests: structure([
+			enabled: bool()
+			testCaseClass: string()
+		])
+	])
+services:
+	-
+		class: DevenJahnke\PHPStan\Rules\Enums\EnumCasePascalCaseRule
+		tags:
+			- phpstan.rules.rule
+	-
+		class: DevenJahnke\PHPStan\Rules\Tests\ClassMustExtendTestCaseRule
+		arguments:
+			testCaseClass: %devenjahnke.tests.testCaseClass%
+	-
+		class: DevenJahnke\PHPStan\Rules\Tests\MethodNamePrefixRule
+		arguments:
+			testCaseClass: %devenjahnke.tests.testCaseClass%
+	-
+		class: DevenJahnke\PHPStan\Rules\Tests\MethodNameSnakeCaseRule
+		arguments:
+			testCaseClass: %devenjahnke.tests.testCaseClass%
