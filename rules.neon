@@ -19,6 +19,10 @@ parametersSchema:
 	])
 services:
 	-
+		class: DevenJahnke\PHPStan\Rules\App\DisallowDirectCarbonUsageRule
+		tags:
+			- phpstan.rules.rule
+	-
 		class: DevenJahnke\PHPStan\Rules\Enums\EnumCasePascalCaseRule
 		tags:
 			- phpstan.rules.rule
